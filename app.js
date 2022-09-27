@@ -38,3 +38,26 @@ const Limiter=rateLimit({
 })
 
 app.use(Limiter)
+
+
+//Mongo DB Database Connections
+
+let URI="mongodb://localhost:27017/Todo"
+
+let OPTION={user:"",password:""}
+
+mongoose.connect(URI,OPTION,(error)=>{
+    console.log("Connection Success");
+    console.log("Error")
+})
+
+//Routing Implement
+app.use("api/v1",router)
+
+//Undefined Route
+
+app.use("*",(req,res)=>{
+    res.status(404).json({status:"failed",data:"Not Found"})
+})
+
+module.exports=app;
