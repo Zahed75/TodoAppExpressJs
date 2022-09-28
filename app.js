@@ -42,17 +42,17 @@ app.use(Limiter)
 
 //Mongo DB Database Connections
 
-let URI="mongodb://localhost:27017/Todo"
+let URI="mongodb://127.0.0.1:27017/Todo"
 
-let OPTION={user:"",password:""}
+let OPTION={user:"",pass:""}
 
 mongoose.connect(URI,OPTION,(error)=>{
     console.log("Connection Success");
-    console.log("Error")
+    console.log(error);
 })
 
 //Routing Implement
-app.use("api/v1",router)
+app.use("/api/v1",router)
 
 //Undefined Route
 
