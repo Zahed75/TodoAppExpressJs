@@ -48,3 +48,27 @@ exports.SelectTodo=(req,res)=>{
         }
     })
 }
+
+// Update TodoList using id
+
+exports.UpdateTodo=(req,res)=>{
+    let TodoSubject=req.body['TodoSubject']
+    let TodoDescriptions=req.body['TodoDescriptions']
+    let _id=req.body['_id']
+    let TodoUpdateDate=Date.now();
+
+    let todoBody={
+        TodoSubject:TodoSubject,
+        TodoDescriptions:TodoDescriptions,
+        TodoUpdateDate:TodoUpdateDate
+    }
+
+    TodoListModel.updateOne({_id:_id},{$set:todoBody},{upsert:true},(err,data)=>{
+        if(err){
+            res.status(400).json({status:"Failed",data:err})
+        }
+        else{
+            res.status(200).json({status:"Todo Update Successfully",data:data})
+        }
+    })
+}
