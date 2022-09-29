@@ -1,5 +1,7 @@
 const ProfileModel = require("../models/ProfileModel");
 var jwt = require('jsonwebtoken');
+
+//User Register
 exports.CreateProfile = (req, res) => {
 
     let reqBody = req.body; // body data ke call kora
@@ -30,6 +32,19 @@ exports.UserLogin = (req, res) => {
             } else {
                 res.status(401).json({status: "Unauthorized!"})
             }
+        }
+    })
+}
+
+
+exports.SelectProfile=(req,res)=>{
+    let UserName=req.headers['username']
+    ProfileModel.find({UserName:UserName},(err,data)=>{
+        if(err){
+            res.status(401).json({status:"Failed",data:err})
+        }
+        else{
+            res.status(200).json({status:"Success",data:data})
         }
     })
 }
