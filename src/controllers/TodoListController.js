@@ -2,6 +2,8 @@ const TodoListModel=require("../models/TodoModel")
 
 // var jwt = require('jsonwebtoken');
 
+// Create TodoList
+
 exports.CreateTodo=(req,res)=>{
     let reqBody=req.body;
 
@@ -27,6 +29,22 @@ exports.CreateTodo=(req,res)=>{
         }
         else{
             res.status(201).json({status:"Todo Created Success",data:data})
+        }
+    })
+}
+
+
+// Read TodoList Specific User
+
+
+exports.SelectTodo=(req,res)=>{
+    let UserName=req.headers['username']
+    TodoListModel.find({UserName:UserName},(err,data)=>{
+        if(err){
+            res.status(400).json({status:"failed",data:err})
+        }
+        else{
+            res.status(200).json({status:"Data Read Success",data:data})
         }
     })
 }
