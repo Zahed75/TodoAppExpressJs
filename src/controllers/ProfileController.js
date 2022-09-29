@@ -48,3 +48,10 @@ exports.SelectProfile=(req,res)=>{
         }
     })
 }
+
+
+exports.UpdateProfile=(req,res)=>{
+    let UserName=req.headers['username']
+    let reqBody=req.body;
+    res.status(200).json(reqBody)
+}
