@@ -15,6 +15,8 @@ router.post("/update-profile",AuthVerifyMiddleware,ProfileController.UpdateProfi
 router.post("/create-todo",AuthVerifyMiddleware,TodoController.CreateTodo)
 router.get("/select-todo",AuthVerifyMiddleware,TodoController.SelectTodo)
 router.post("/update-todo",AuthVerifyMiddleware,TodoController.UpdateTodo)
-
-
+router.post("/update-todo-status",AuthVerifyMiddleware,TodoController.UpdateStatusTodo)
+router.post("/remove-todo",AuthVerifyMiddleware,TodoController.RemoveTodo)
+router.post("/select-todoBy-status",AuthVerifyMiddleware,TodoController.SelectTodoByStatus)
+router.post("/select-todoBy-Date",AuthVerifyMiddleware,TodoController.FilterByDateTodo)
 module.exports=router;
